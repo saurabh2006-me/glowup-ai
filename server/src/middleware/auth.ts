@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 import User from "../models/User";
 
 interface AuthRequest extends Request<any, any, any, any> {
@@ -14,9 +14,9 @@ export const protect = async (
   try {
     let token: string | undefined;
 
-    if (req.headers.authorization?.startsWith("Bearer")) {
-      token = req.headers.authorization.split(" ")[1];
-    }
+    if ((req as any).headers?.authorization?.startsWith("Bearer")) {
+  token = (req as any).headers.authorization.split(" ")[1];
+}
 
     if (!token) {
       res.status(401).json({ message: "Not authorized, no token" });

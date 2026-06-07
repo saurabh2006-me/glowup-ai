@@ -1,5 +1,5 @@
 import { Router } from "express";
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 import User from "../models/User";
 import { protect } from "../middleware/auth";
 import { asyncHandler } from "../middleware/errorHandler";
@@ -8,9 +8,13 @@ const router = Router();
 
 // Generate JWT
 const generateToken = (id: string): string => {
-  return jwt.sign({ id }, process.env.JWT_SECRET!, {
-    expiresIn: process.env.JWT_EXPIRE || "7d",
-  });
+  return jwt.sign(
+    { id },
+    process.env.JWT_SECRET as string,
+    {
+      expiresIn: "7d" as any,
+    }
+  );
 };
 
 // @route   POST /api/auth/register

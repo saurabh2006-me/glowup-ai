@@ -1,0 +1,18 @@
+{
+  "name": "glowup-ai",
+  "version": "1.0.0",
+  "description": "AI-powered facial attractiveness and self-improvement platform",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
+    "build": "npm run build --workspace=client && npm run build --workspace=server",
+    "install:all": "npm install --workspace=client && npm install --workspace=server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

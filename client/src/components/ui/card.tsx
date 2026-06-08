@@ -22,9 +22,9 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           hover && "card-hover cursor-pointer",
           className
         )}
-        whileHover={hover ? { y: -4 } : undefined}
-        {...props}
-      >
+       whileHover={hover ? { y: -4 } : undefined}
+{...(props as any)}
+>
         {children}
       </motion.div>
     );
